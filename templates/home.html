@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/main.css') }}"
+    />
+    <link rel="stylesheet" href="../static/styles/main.css" />
+
+    <title>PaSE Tracker</title>
+  </head>
+  <body>
+    <div class="title"><span>P</span>aSE <br />covid tracker</div>
+
+    <div class="global-data-div">
+      <ul class="global-data">
+        <li>
+          Total Cases
+          <p>{{covid["cases"]}}</p>
+        </li>
+        <li>
+          Total Active
+          <p>{{covid["active"]}}</p>
+        </li>
+        <li>
+          Recoveries
+          <p>{{covid["recovered"]}}</p>
+        </li>
+
+        <li>
+          Deaths
+          <p>{{covid["deaths"]}}</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="country-table">
+      <table>
+        <tr>
+          <th>Countries</th>
+          <th>Total Cases</th>
+          <th>Active Cases</th>
+          <th>Recoveries</th>
+          <th>Deaths</th>
+        </tr>
+
+        <tbody id="tdata" class="stripped-table"></tbody>
+      </table>
+    </div>
+
+    <div class="aside-here">
+      <aside class="sidenotes">
+        <ul>
+          <li class="healthtips">
+            <h2>Health Tips</h2>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Aspernatur consequuntur expedita totam quidem unde molestias
+              sapiente qui quos consequatur velit facilis repellat
+              exercitationem obcaecati suscipit ex delectus nemo sit inventore,
+              non aperiam voluptatem neque fuga? Corporis pariatur facere illum
+              aperiam ullam ad inventore, ex dolor mollitia esse non corrupti
+              minima!
+            </p>
+          </li>
+          <li class="news-update">
+            <h2>News Updates</h2>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Aspernatur consequuntur expedita totam quidem unde molestias
+              sapiente qui quos consequatur velit facilis repellat
+              exercitationem obcaecati suscipit ex delectus nemo sit inventore,
+              non aperiam voluptatem neque fuga? Corporis pariatur facere illum
+              aperiam ullam ad inventore, ex dolor mollitia esse non corrupti
+              minima!
+            </p>
+          </li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- make sure to uncomment the actual scrips b4 deploying  -->
+
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script> -->
+
+    <!-- <script>
+      $.getJSON("https://disease.sh/v3/covid-19/countries", function (datas) {
+        console.log(datas);
+        function buildTable(data) {
+          var table = document.getElementById("tdata");
+          for (var i = 0; i < data.length; i++) {
+            var row = `<tr>
+                <td>${data[i].country}</td>
+                <td>${data[i].cases}</td>
+                <td>${data[i].active}</td>
+                <td>${data[i].recovered}</td>
+                <td>${data[i].deaths}</td>
+              </tr>`;
+
+            table.innerHTML += row;
+          }
+        }
+        buildTable(datas);
+      });
+    </script> -->
+    <script>
+      datas = [
+        {
+          updated: 1598228677573,
+          country: "USA",
+
+          cases: 5841428,
+          todayCases: 43829,
+          deaths: 180174,
+          todayDeaths: 974,
+          recovered: 3148080,
+          todayRecovered: 20662,
+          active: 2513174,
+          critical: 16739,
+          casesPerOneMillion: 17632,
+          deathsPerOneMillion: 544,
+          tests: 75475175,
+          testsPerOneMillion: 227823,
+          population: 331288117,
+          continent: "North America",
+          oneCasePerPeople: 57,
+          oneDeathPerPeople: 1839,
+          oneTestPerPeople: 4,
+          activePerOneMillion: 7586.07,
+          recoveredPerOneMillion: 9502.54,
+          criticalPerOneMillion: 50.53,
+        },
+        {
+          updated: 1598228677574,
+          country: "Brazil",
+
+          cases: 3582698,
+          todayCases: 46210,
+          deaths: 114277,
+          todayDeaths: 823,
+          recovered: 2709638,
+          todayRecovered: 38883,
+          active: 758783,
+          critical: 8318,
+          casesPerOneMillion: 16838,
+          deathsPerOneMillion: 537,
+          tests: 14144344,
+          testsPerOneMillion: 66474,
+          population: 212780766,
+          continent: "South America",
+          oneCasePerPeople: 59,
+          oneDeathPerPeople: 1862,
+          oneTestPerPeople: 15,
+          activePerOneMillion: 3566.03,
+          recoveredPerOneMillion: 12734.41,
+          criticalPerOneMillion: 39.09,
+        },
+        {
+          updated: 1598228677575,
+          country: "India",
+
+          cases: 3043436,
+          todayCases: 70068,
+          deaths: 56846,
+          todayDeaths: 918,
+          recovered: 2279900,
+          todayRecovered: 59101,
+          active: 706690,
+          critical: 8944,
+          casesPerOneMillion: 2202,
+          deathsPerOneMillion: 41,
+          tests: 34491073,
+          testsPerOneMillion: 24958,
+          population: 1381974682,
+          continent: "Asia",
+          oneCasePerPeople: 454,
+          oneDeathPerPeople: 24311,
+          oneTestPerPeople: 40,
+          activePerOneMillion: 511.36,
+          recoveredPerOneMillion: 1649.74,
+          criticalPerOneMillion: 6.47,
+        },
+        {
+          updated: 1598228677576,
+          country: "Russia",
+          cases: 951897,
+          todayCases: 4921,
+          deaths: 16310,
+          todayDeaths: 121,
+          recovered: 767477,
+          todayRecovered: 6147,
+          active: 168110,
+          critical: 2300,
+          casesPerOneMillion: 6522,
+          deathsPerOneMillion: 112,
+          tests: 33814105,
+          testsPerOneMillion: 231693,
+          population: 145943820,
+          continent: "Europe",
+          oneCasePerPeople: 153,
+          oneDeathPerPeople: 8948,
+          oneTestPerPeople: 4,
+          activePerOneMillion: 1151.88,
+          recoveredPerOneMillion: 5258.72,
+          criticalPerOneMillion: 15.76,
+        },
+      ];
+      function buildTable(data) {
+        var table = document.getElementById("tdata");
+        for (var i = 0; i < data.length; i++) {
+          var row = `<tr>
+                <td>${data[i].country}</td>
+                <td>${data[i].cases}</td>
+                <td>${data[i].active}</td>
+                <td>${data[i].recovered}</td>
+                <td>${data[i].deaths}</td>
+              </tr>`;
+
+          table.innerHTML += row;
+        }
+      }
+      buildTable(datas);
+    </script>
+  </body>
+</html>
